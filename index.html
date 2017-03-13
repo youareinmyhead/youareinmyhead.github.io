@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>You are in My Head</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>You are in my head</h1>
+    <div class="form-group">
+        <form>
+            <label class="sr-only" for="question">Question 1</label>
+            <textarea id="question" class="form-control" aria-describedby="helpBlock" required></textarea>
+            <span class="help-block">Please enter your Q/A.</span>
+            <label class="sr-only" for="email">Email</label>
+            <input type="email" id="email" class="form-control" aria-describedby="helpBlock" required placeholder="abc@test.com"/>
+            <span class="help-block">Please enter your email id.</span>
+            <input type="text" id="time" class="time" required placeholder="1"/><span class="hrs-text"> minute(s)</span>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="form-group">
+
+    </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("form").on("submit", function () {
+            $.ajax({
+                url: "http://192.168.1.43:3000",
+                data: {
+                    email: $("#email").val(),
+                    question: $("#question").val(),
+                    time: $("#time").val()
+                },
+                success: function (res) {
+                    alert("Successfully submitted.")
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>
