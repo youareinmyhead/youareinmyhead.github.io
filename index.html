@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="viewport" content="width=device-width, initial-scale=1">
     <title>You are in My Head</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style type="text/css">
-        h1 {
-            text-align: center;
-        }
         h3{
             font-size: 42px;
             font-weight: normal;
@@ -20,7 +17,7 @@
         body {
             color: rgb(164,166,167);
             background: #182123;
-            font-family: Gotham;
+            /*font-family: Gotham;*/
         }
 
         input{
@@ -36,8 +33,16 @@
             border-right: 0.5px solid;
         }
 
-        input:active{
-            border-color: #182123;
+        button{
+            width: 100%;
+            padding: 10px;
+            font-size: 22px;
+            background: #fff;
+        }
+
+        .container{
+            height: 100vh;
+            padding: 20% 0;
         }
 
         /* Extra small devices (phones, less than 768px) */
@@ -47,7 +52,7 @@
             background: url("images/img1.png") no-repeat;
             background-size: 100% 100%;
             width: 100%;
-            height: 527px;
+            height: 100vh;
         }
 
         /* Small devices (tablets, 768px and up) */
@@ -58,6 +63,9 @@
         @media (min-width: 992px) {
             .img1 {
                 height: 2048px
+            }
+            .container{
+                height: 100%;
             }
         }
 
@@ -75,19 +83,19 @@
     <div class="container form-group">
         <form>
             <h3>What are 3 things that define you that you'd never change about yourself?</h3>
-            <input type="text" placeholder="Write Here" name="q1"/>
-            <input type="text" placeholder="Write Here" name="q2"/>
-            <input type="text" placeholder="Write Here" name="q3"/>
+            <input type="text" placeholder="Write Here" id="q1" required/>
+            <input type="text" placeholder="Write Here" id="q2" required/>
+            <input type="text" placeholder="Write Here" id="q3" required/>
 
             <h3>What are 3 things about you that hold you back and you'd like to change about yourself</h3>
-            <input type="text" placeholder="Write Here" name="q4"/>
-            <input type="text" placeholder="Write Here" name="q5"/>
-            <input type="text" placeholder="Write Here" name="q6"/>
+            <input type="text" placeholder="Write Here" id="q4" required/>
+            <input type="text" placeholder="Write Here" id="q5" required/>
+            <input type="text" placeholder="Write Here" id="q6" required/>
 
             <h3>your e-mail:</h3>
             <input type="email" placeholder="Write Here" required/>
 
-            <button type="submit" class="btn btn-primary">Send One Year Later</button>
+            <button type="submit">Send One Year Later</button>
 
             <!--
                         <label class="sr-only" for="question">Question 1</label>
@@ -102,7 +110,6 @@
             -->
         </form>
     </div>
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -112,9 +119,12 @@
             $.ajax({
                 url: "https://protected-plateau-43755.herokuapp.com/",
                 data: {
-                    email: $("#email").val(),
-                    question: $("#question").val(),
-                    time: $("#time").val()
+                    q1: $("#q1").val(),
+                    q2: $("#q2").val(),
+                    q3: $("#q3").val(),
+                    q4: $("#q4").val(),
+                    q5: $("#q5").val(),
+                    q6: $("#q6").val()
                 }
             }).always(function () {
                 $("form")[0].reset();
