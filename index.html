@@ -12,21 +12,21 @@
             font-family: Gotham;
             src: url("fonts/Gotham-Book.otf") format("opentype");
         }
-        h3{
+
+        h3 {
             font-size: 34px;
             font-weight: normal;
             margin: 5% 0;
         }
 
         body {
-            color: rgb(164,166,167);
+            color: rgb(164, 166, 167);
             background: #182123;
             font-family: Gotham, serif;
             letter-spacing: 2px;
-            width: 100vw;
         }
 
-        input{
+        input {
             font-family: inherit;
             line-height: inherit;
             display: block;
@@ -38,20 +38,24 @@
             border-right: 0.5px solid;
             width: 100%;
         }
+
         ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
             opacity: 0.8;
         }
+
         ::-moz-placeholder { /* Firefox 19+ */
             opacity: 0.8;
         }
+
         :-ms-input-placeholder { /* IE 10+ */
             opacity: 0.8;
         }
+
         :-moz-placeholder { /* Firefox 18- */
             opacity: 0.8;
         }
 
-        button{
+        button {
             width: 100%;
             padding: 10px;
             font-size: 22px;
@@ -59,12 +63,12 @@
             font-weight: bold;
         }
 
-        .container{
+        .my-container {
             height: 100vh;
-            padding: 10% 0;
+            padding: 10%;
         }
 
-        .last-item{
+        .last-item {
             margin-bottom: 15%;
         }
 
@@ -87,7 +91,8 @@
             .img1 {
                 height: 2048px
             }
-            .container{
+
+            .my-container {
                 height: 100%;
             }
         }
@@ -101,43 +106,53 @@
     </style>
 </head>
 <body>
-    <img src="images/img1.png" />
-    <!--<div class="img1"></div>-->
-    <div class="container form-group">
-        <form>
-            <h3>What are 3 things that define you that you'd never change about yourself?</h3>
-            <input type="text" placeholder="Write Here" id="q1" required/>
-            <input type="text" placeholder="Write Here" id="q2" required/>
-            <input type="text" class="last-item" placeholder="Write Here" id="q3" required/>
+<!--<div>-->
+<img src="images/img1.png"/>
+<!--<div class="img1"></div>-->
+<div class="my-container form-group">
+    <form>
+        <h3>What are 3 things that define you that you'd never change about yourself?</h3>
+        <input type="text" placeholder="Write Here" id="q1" required/>
+        <input type="text" placeholder="Write Here" id="q2" required/>
+        <input type="text" class="last-item" placeholder="Write Here" id="q3" required/>
 
-            <h3>What are 3 things about you that hold you back and you'd like to change about yourself</h3>
-            <input type="text" placeholder="Write Here" id="q4" required/>
-            <input type="text" placeholder="Write Here" id="q5" required/>
-            <input type="text" class="last-item" placeholder="Write Here" id="q6" required/>
+        <h3>What are 3 things about you that hold you back and you'd like to change about yourself</h3>
+        <input type="text" placeholder="Write Here" id="q4" required/>
+        <input type="text" placeholder="Write Here" id="q5" required/>
+        <input type="text" class="last-item" placeholder="Write Here" id="q6" required/>
 
-            <h3>your e-mail:</h3>
-            <input type="email" id="email" class="last-item" placeholder="Write Here" required/>
+        <h3>your e-mail:</h3>
+        <input type="email" id="email" class="last-item" placeholder="Write Here" required/>
 
-            <button type="submit">Send One Year Later</button>
+        <button type="submit">Send One Year Later</button>
 
-            <!--
-                        <label class="sr-only" for="question">Question 1</label>
-                        <textarea id="question" class="form-control" aria-describedby="helpBlock" required></textarea>
-                        <span class="help-block">Please enter your Q/A.</span>
-                        <label class="sr-only" for="email">Email</label>
-                        <input type="email" id="email" class="form-control" aria-describedby="helpBlock" required
-                               placeholder="abc@test.com"/>
-                        <span class="help-block">Please enter your email id.</span>
-                        <input type="number" id="time" class="time" required placeholder="1"/><span class="hrs-text"> minute(s)</span>
-                        <button type="submit" class="btn btn-primary" style="display: block;margin-top: 20px">Submit</button>
-            -->
-        </form>
-    </div>
+        <!--
+                    <label class="sr-only" for="question">Question 1</label>
+                    <textarea id="question" class="form-control" aria-describedby="helpBlock" required></textarea>
+                    <span class="help-block">Please enter your Q/A.</span>
+                    <label class="sr-only" for="email">Email</label>
+                    <input type="email" id="email" class="form-control" aria-describedby="helpBlock" required
+                           placeholder="abc@test.com"/>
+                    <span class="help-block">Please enter your email id.</span>
+                    <input type="number" id="time" class="time" required placeholder="1"/><span class="hrs-text"> minute(s)</span>
+                    <button type="submit" class="btn btn-primary" style="display: block;margin-top: 20px">Submit</button>
+        -->
+    </form>
+</div>
+<!--</div>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("form").on("submit", function (e) {
-            e.preventDefault();
+        function bindEvents() {
+            $("form").on("submit", function (e) {
+                e.preventDefault();
+                submitForm();
+            });
+
+            $("body").width($("img").width());
+        }
+
+        function submitForm() {
             $.ajax({
                 url: "https://protected-plateau-43755.herokuapp.com/",
                 data: {
@@ -152,8 +167,15 @@
             }).always(function () {
                 $("form")[0].reset();
                 alert("Successfully submitted.")
-            })
-        });
+            });
+        }
+
+        function init() {
+            bindEvents();
+        }
+
+        init();
+
     })
 </script>
 </body>
