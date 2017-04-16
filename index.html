@@ -104,7 +104,7 @@
             <input type="text" class="last-item" placeholder="Write Here" id="q6" required/>
 
             <h3>your e-mail:</h3>
-            <input type="email" class="last-item" placeholder="Write Here" required/>
+            <input type="email" id="email" class="last-item" placeholder="Write Here" required/>
 
             <button type="submit">Send One Year Later</button>
 
@@ -130,6 +130,7 @@
             $.ajax({
                 url: "https://protected-plateau-43755.herokuapp.com/",
                 data: {
+                    email: $("#email").val(),
                     q1: $("#q1").val(),
                     q2: $("#q2").val(),
                     q3: $("#q3").val(),
